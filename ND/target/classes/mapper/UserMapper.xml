@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nd.mapper.UserMapper">
+
+    <select id="getByUname" resultMap="userMap">
+        select *
+        from t_user
+        where uname = #{uname}
+    </select>
+
+    <insert id="save">
+        insert t_user (dbid, uname, pwd, phone, email) value (null, #{uname}, #{pwd}, #{phone}, #{email})
+    </insert>
+
+    <resultMap id="userMap" type="com.nd.vo.User">
+        <id column="dbid" property="id"/>
+        <result column="uname" property="uname"/>
+        <result column="pwd" property="pwd"/>
+        <result column="status" property="status"/>
+        <result column="phone" property="phone"/>
+        <result column="email" property="email"/>
+    </resultMap>
+
+</mapper>

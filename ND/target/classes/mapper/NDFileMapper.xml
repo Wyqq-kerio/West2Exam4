@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nd.mapper.NDFileMapper">
+
+    <insert id="save">
+        insert into t_file (dbid, original_filename, filename, status, crete_time, create_id, path) value (null, #{originalFilename}, #{fileName}, #{status}, #{creteTime}, #{creteId}, #{path})
+    </insert>
+
+    <delete id="delete">
+        delete
+        from t_file
+        where dbid = #{id}
+    </delete>
+
+    <select id="getById" resultMap="ndFileMap">
+        select *
+        from t_file
+        where dbid = #{id}
+    </select>
+
+    <select id="getByFileName" resultMap="ndFileMap">
+        select *
+        from t_file
+        where filename = #{fileName}
+    </select>
+
+    <select id="findUnApproveImgByPage" resultMap="ndFileMap">
+        select f.*, u.uname as create_name
+        from t_file f
+                 left join t_user u on u.dbid = f.create_id
+        where f.status = 0
+
+    </select>
+
+    <update id="approve">
+        update t_file
+        set status = 1
+        where dbid = #{id}
+    </update>
+
+    <update id="updatePath">
+        update t_file
+        set `path` = #{path}
+        where `dbid` = #{id}
+    </update>
+
+    <resultMap id="ndFileMap" type="com.nd.vo.NDFile">
+        <id column="dbid" property="id"/>
+        <result column="original_filename" property="originalFilename"/>
+        <result column="filename" property="fileName"/>
+        <result column="status" property="status"/>
+        <result column="crete_time" property="creteTime"/>
+        <result column="create_id" property="creteId"/>
+        <result column="path" property="path"/>
+        <result column="create_name" property="createName"/>
+    </resultMap>
+
+</mapper>

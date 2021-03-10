@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: ND
+Implementation-Version: 1.0-SNAPSHOT
+Built-By: wyqq
+Implementation-Vendor-Id: com.nd
+Build-Jdk: 1.8.0_112-release
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/ND
+Created-By: Maven Integration for Eclipse
+
